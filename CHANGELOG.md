@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.0.2-beta
+
+- Added `displayName` so Homebridge Config UI X shows "Homebridge RPi
+  Monitor" instead of an auto-generated title
+- Raised minimum required Homebridge version to `1.8.0` (ESM plugin
+  support)
+
 ## 0.0.1-beta
 
 - Initial beta release

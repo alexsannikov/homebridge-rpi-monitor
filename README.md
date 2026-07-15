@@ -11,12 +11,6 @@ host, which makes it a good fit for Homebridge running inside a Docker
 container — no GPIO daemon, no bind-mounted volumes, no binary socket
 protocol.
 
-> **Note:** this plugin is not part of the
-> [Verified by Homebridge](https://github.com/homebridge/plugins/wiki/Verified-Plugins)
-> program, so it won't show a "Verified" checkmark in Config UI X.
-> Verification mainly affects search placement and a trust badge, not how
-> the plugin works.
-
 ## Disclaimer
 
 This software is provided **"as is", without warranty of any kind**,
@@ -33,13 +27,13 @@ it at your own risk.
 ## How it works
 
 ```
-┌────────────────────────────┐        ┌───────────────────────────────┐
+┌─────────────────────────────┐        ┌────────────────────────────────┐
 │ Raspberry Pi host           │        │ Homebridge (Docker container)  │
-│                              │        │                                 │
-│ rpi-monitor.service          │  HTTP  │ homebridge-rpi-monitor plugin  │
+│                             │        │                                │
+│ rpi-monitor.service         │  HTTP  │ homebridge-rpi-monitor plugin  │
 │ (rpi-monitor-server.py)     │◄───────┤ polls http://127.0.0.1:8890/   │
-│ reads /sys, /proc, vcgencmd │  GET   │                                 │
-└────────────────────────────┘        └───────────────────────────────┘
+│ reads /sys, /proc, vcgencmd │  GET   │                                │
+└─────────────────────────────┘        └────────────────────────────────┘
 ```
 
 The companion server reads system files and `vcgencmd`, and serves the
