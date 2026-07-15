@@ -1,0 +1,11 @@
+node_modules/
+*.log
+.DS_Store
+.vscode/
+*.tgz
+__pycache__/
+*.pyc
+
+# Wiki source pages — published separately to the GitHub repo Wiki,
+# not shipped as part of the code repository.
+wiki/

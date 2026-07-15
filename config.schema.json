@@ -1,0 +1,131 @@
+{
+  "pluginAlias": "RPiMonitor",
+  "pluginType": "platform",
+  "singular": true,
+  "headerDisplay": "Exposes Raspberry Pi CPU temperature and optional system metrics to HomeKit. Requires the companion HTTP server running on the host — see the plugin README for setup instructions.",
+  "footerDisplay": "Default server URL: http://127.0.0.1:8890/",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Platform Name",
+        "type": "string",
+        "default": "Raspberry Pi"
+      },
+      "url": {
+        "title": "Stats Server URL",
+        "type": "string",
+        "default": "http://127.0.0.1:8890/",
+        "description": "URL of the rpi-monitor-server companion service running on the host."
+      },
+
+      "updateInterval": {
+        "title": "Update Interval (seconds)",
+        "type": "integer",
+        "default": 30,
+        "minimum": 5,
+        "description": "How often HomeKit values are refreshed. Applies to every sensor unless individual intervals are enabled below."
+      },
+      "useIndividualIntervals": {
+        "title": "Use a separate update interval per sensor",
+        "type": "boolean",
+        "default": false
+      },
+
+      "tempName": {
+        "title": "Temperature Sensor Name",
+        "type": "string",
+        "default": "CPU Temperature"
+      },
+      "tempInterval": {
+        "title": "Temperature Interval (seconds)",
+        "type": "integer",
+        "default": 30,
+        "minimum": 5,
+        "condition": { "functionBody": "return model.useIndividualIntervals === true;" }
+      },
+
+      "sensors": {
+        "type": "object",
+        "properties": {
+          "undervoltage": {
+            "title": "Power warning (undervoltage)",
+            "type": "boolean",
+            "default": false
+          },
+          "memory": {
+            "title": "Memory usage",
+            "type": "boolean",
+            "default": false
+          },
+          "disk": {
+            "title": "Disk usage",
+            "type": "boolean",
+            "default": false
+          },
+          "load": {
+            "title": "Load average",
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+
+      "throttleName": {
+        "title": "Power Warning Sensor Name",
+        "type": "string",
+        "default": "Power Warning",
+        "condition": { "functionBody": "return model.sensors && model.sensors.undervoltage === true;" }
+      },
+      "throttleInterval": {
+        "title": "Power Warning Interval (seconds)",
+        "type": "integer",
+        "default": 30,
+        "minimum": 5,
+        "condition": { "functionBody": "return model.useIndividualIntervals === true && model.sensors && model.sensors.undervoltage === true;" }
+      },
+
+      "memName": {
+        "title": "Memory Usage Sensor Name",
+        "type": "string",
+        "default": "Memory Usage",
+        "condition": { "functionBody": "return model.sensors && model.sensors.memory === true;" }
+      },
+      "memInterval": {
+        "title": "Memory Usage Interval (seconds)",
+        "type": "integer",
+        "default": 30,
+        "minimum": 5,
+        "condition": { "functionBody": "return model.useIndividualIntervals === true && model.sensors && model.sensors.memory === true;" }
+      },
+
+      "diskName": {
+        "title": "Disk Usage Sensor Name",
+        "type": "string",
+        "default": "Disk Usage",
+        "condition": { "functionBody": "return model.sensors && model.sensors.disk === true;" }
+      },
+      "diskInterval": {
+        "title": "Disk Usage Interval (seconds)",
+        "type": "integer",
+        "default": 30,
+        "minimum": 5,
+        "condition": { "functionBody": "return model.useIndividualIntervals === true && model.sensors && model.sensors.disk === true;" }
+      },
+
+      "loadName": {
+        "title": "Load Average Sensor Name",
+        "type": "string",
+        "default": "Load Average",
+        "condition": { "functionBody": "return model.sensors && model.sensors.load === true;" }
+      },
+      "loadInterval": {
+        "title": "Load Average Interval (seconds)",
+        "type": "integer",
+        "default": 30,
+        "minimum": 5,
+        "condition": { "functionBody": "return model.useIndividualIntervals === true && model.sensors && model.sensors.load === true;" }
+      }
+    }
+  }
+}

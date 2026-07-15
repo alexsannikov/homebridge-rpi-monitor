@@ -1,0 +1,11 @@
+[Unit]
+Description=Minimal Raspberry Pi stats HTTP server (temperature + undervoltage) for homebridge-rpi-monitor
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/rpi-monitor/rpi-monitor-server.py
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
