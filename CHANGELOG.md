@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.0
+
+- First stable release
+- CPU temperature, undervoltage/power warning, memory usage, disk usage,
+  and load average, as introduced in the 0.0.x beta releases below
+
 ## 0.0.2-beta
 
 - Added `displayName` so Homebridge Config UI X shows "Homebridge RPi

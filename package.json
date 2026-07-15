@@ -1,7 +1,7 @@
 {
   "name": "homebridge-rpi-monitor",
   "displayName": "Homebridge RPi Monitor",
-  "version": "0.0.2-beta",
+  "version": "1.0.0",
   "type": "module",
   "main": "index.js",
   "description": "A minimal Homebridge plugin exposing Raspberry Pi CPU temperature and undervoltage status to HomeKit via a lightweight companion HTTP server — no pigpiod/rgpiod required.",
